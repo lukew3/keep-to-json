@@ -1,11 +1,12 @@
-# keep-to-markdown
+# keep-to-json
 
-A script to convert Google Keep notes into markdown files, for Linux, Mac, and Windows.
+A script to convert Google Keep notes from Google Takeout into a single json file, for Linux, Mac, and Windows.
+Forked from https://github.com/erikelisath/keep-to-markdown
 
 **Requirements**
 
 - Python 3.x
-- Google Takeout notes as Json (See [How to download your Google data](https://support.google.com/accounts/answer/3024190))
+- Google Takeout notes (See [How to download your Google data](https://support.google.com/accounts/answer/3024190))
 
 **Example**
 
@@ -17,54 +18,15 @@ arguments:
 
 optional arguments:
   -h, --help    Show this help message and exit
-  -t            Use subfolders for tags instead of YAML front-matter
 ```
 
-The script outputs to a `notes` directory. Images will be stored in `notes/resources`.
+The script outputs to a file `exported_notes.json`. Images will be stored in `notes/resources`.
 
-If the `-t` flag is included, the first tag (if present) of each note will be used to create a subfolder. (e.g. `notes/code_snippets` and `notes/code_snippets/resources`)
-
-Other data is extracted and written as YAML front-matter:
-
-- title
-- tags (if the `-t` flag isn't specified)
-- text content
-- task list
-- web links
-- images
-
-## Example
-
-Example of a converted markdown note:
-
-```markdown
----
-title: <Title>
-date: <Date> (optional, if title is set)
-tags: <tag1>;<tag2>;
----
-
-<textContent>
-Example Text ...
-
-<listContent>
-*Tasklist*:
-- [ ] task1
-- [x] task2
-
-<annotations>
-*Weblinks:* [link1](http//..); [link2](http://..);
-
-<attachments>
-*Attachments:* ![image](resource/image.jpg)
+Export format: 
+```typescript
+{
+  title: string,
+  content: string,
+  labels: string[]
+}[]
 ```
-
-A note's title will be used for its filename. If there is no title available the created timestamp will be used.
-
-## Future features
-
-- [x] OS compatible
-- [x] support folder tags for Nextcloud 
-- [ ] save modified Timestamp by default
-- [ ] use Google keep colors
-- [ ] usability for Joplin import
