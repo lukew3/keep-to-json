@@ -11,7 +11,7 @@ Forked from https://github.com/erikelisath/keep-to-markdown
 **Example**
 
 ```
-> python keep-to-markdown.py -i Takeout/Keep/
+> python keep-to-json.py -i Takeout/Keep/
 
 arguments:
   -i PATH       Relative path to the Google Keep data folder
